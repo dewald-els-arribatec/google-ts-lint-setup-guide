@@ -17,6 +17,7 @@ Sample project using the Google TS Linter.
       - [WebStorm Configuration steps for ESLint](#webstorm-configuration-steps-for-eslint)
     - [WebStorm - Prettier](#webstorm---prettier)
       - [WebStorm Configuration Steps for Prettier:](#webstorm-configuration-steps-for-prettier)
+  - [Visual Studio Code Extensions](#visual-studio-code-extensions)
   - [Package.json Scripts](#packagejson-scripts)
 
 ## Description
@@ -71,7 +72,7 @@ Add the following line at the start of the `.eslintrc.json` file to your project
 
 ## WebStorm Configuration
 
-For WebStorm users some addition configuration is required.
+For [WebStorm](https://www.jetbrains.com/webstorm/) users some addition configuration is required.
 
 ### WebStorm - ESLint
 
@@ -101,6 +102,13 @@ Open Preferences from `File > Preferences` and Search for "prettier".
 
 > 📖 More information can be found in the [Prettier documentation](https://prettier.io/docs/en/webstorm.html#jetbrains-ides-webstorm-intellij-idea-pycharm-etc)
 
+
+## Visual Studio Code Extensions
+
+Ensure the below extensions are installed when using [Visual Studio Code](https://code.visualstudio.com/).
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Package.json Scripts 
 
