@@ -18,6 +18,7 @@ Sample project using the Google TS Linter.
     - [WebStorm - Prettier](#webstorm---prettier)
       - [WebStorm Configuration Steps for Prettier:](#webstorm-configuration-steps-for-prettier)
   - [Visual Studio Code Extensions](#visual-studio-code-extensions)
+    - [Extensions](#extensions)
   - [Package.json Scripts](#packagejson-scripts)
 
 ## Description
@@ -107,7 +108,9 @@ Open Preferences from `File > Preferences` and Search for "prettier".
 
 Ensure the below extensions are installed when using [Visual Studio Code](https://code.visualstudio.com/).
 
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+### Extensions
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Package.json Scripts 
