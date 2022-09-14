@@ -62,7 +62,6 @@ Add the following line at the start of the `.eslintrc.json` file to your project
 
 ```
 .
-├── node_modules            # Compiled files (alternatively `dist`)
 ├── .editorconfig           # Configuration for code editor
 ├── .eslintignore           # Folders to ignore for linting
 ├── .eslint.json            # Linting Rules that inherit node_modules/gts/.eslint.json
