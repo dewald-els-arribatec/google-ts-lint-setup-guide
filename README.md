@@ -9,7 +9,7 @@ Sample project using the Google TS Linter.
 - [TS Linter and Prettier](#ts-linter-and-prettier)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
-  - [Usage](#usage)
+  - [Setup ESLint](#setup-eslint)
     - [Update `tsconfig.json`](#update-tsconfigjson)
   - [Important files](#important-files)
   - [WebStorm Configuration](#webstorm-configuration)
@@ -20,16 +20,17 @@ Sample project using the Google TS Linter.
   - [Visual Studio Code Extensions](#visual-studio-code-extensions)
     - [Extensions](#extensions)
   - [Package.json Scripts](#packagejson-scripts)
+  - [Husky [WIP]](#husky-wip)
 
 ## Description
 
 Setup a project to use the [Google TypeScript Linter and Prettier](https://github.com/google/gts)
 
-## Usage
+## Setup ESLint
 
 Please check the [NOTE on tsconfig.json](#note-on-tsconfigjson).
 
-Run the following command from the root of the project directory and follow the prompts. 
+Run the following command from the root of the project directory and follow the prompts.
 
 ```shell
 npx gts init
@@ -58,8 +59,6 @@ Add the following line at the start of the `.eslintrc.json` file to your project
 
 > 📝 NOTE: Replace the `extends` property if it already exists.
 
-
-
 ## Important files
 
 ```
@@ -77,11 +76,12 @@ For [WebStorm](https://www.jetbrains.com/webstorm/) users some addition configur
 
 ### WebStorm - ESLint
 
-Open Preferences from `File > Preferences`and search for "eslint". 
+Open Preferences from `File > Preferences` and search for "eslint".
 
 #### WebStorm Configuration steps for ESLint
+
 1. Select the "Automatic ESLint configuration" option
-2. *[Optionally]* Check the "Run eslint --fix" on save.
+2. _[Optionally]_ Check the "Run eslint --fix" on save.
 
 ![Enable ESlint](./img/webstorm-eslint.png)
 
@@ -95,14 +95,12 @@ Open Preferences from `File > Preferences` and Search for "prettier".
 
 1. From the dropdown, select the prettier folder from the `node_modules` folder for the current project.
    1. Leave the **"run for files"** as its default value
-2. Check the **"On 'Reformat Code' action"**  checkbox
-3. *[Optionally]* Check the **"On Save"** checkbox
-
+2. Check the **"On 'Reformat Code' action"** checkbox
+3. _[Optionally]_ Check the **"On Save"** checkbox
 
 ![Enable Prettier](./img/prettier-settings.png)
 
 > 📖 More information can be found in the [Prettier documentation](https://prettier.io/docs/en/webstorm.html#jetbrains-ides-webstorm-intellij-idea-pycharm-etc)
-
 
 ## Visual Studio Code Extensions
 
@@ -113,7 +111,7 @@ Ensure the below extensions are installed when using [Visual Studio Code](https:
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## Package.json Scripts 
+## Package.json Scripts
 
 ```json
 {
@@ -127,3 +125,17 @@ Ensure the below extensions are installed when using [Visual Studio Code](https:
 ```
 
 The above commands are added by the `gts` package.
+
+## Husky [WIP]
+
+[Husky](https://typicode.github.io/husky/#/) is used to configure "pre-commits" to lint your code before it is committed to git.
+
+Run the following command in the root of the project being set up. 
+
+```shell 
+px husky-init && npm install       # npm
+```
+
+The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, an npm command can be configured to run before code can be committed to git. 
+
+
