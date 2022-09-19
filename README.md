@@ -9,19 +9,19 @@ Sample project using the Google TS Linter.
 - [TS Linter and Prettier](#ts-linter-and-prettier)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
-  - [Setup ESLint](#setup-eslint)
+  - [Install ESLint and Prettier](#install-eslint-and-prettier)
     - [GTS Prompts](#gts-prompts)
     - [Install TypeScript ESLint Package](#install-typescript-eslint-package)
     - [Update `tsconfig.json`](#update-tsconfigjson)
   - [Important files](#important-files)
   - [WebStorm Configuration](#webstorm-configuration)
     - [WebStorm - ESLint](#webstorm---eslint)
-      - [WebStorm Configuration steps for ESLint](#webstorm-configuration-steps-for-eslint)
+      - [WebStorm - Configuration steps for ESLint](#webstorm---configuration-steps-for-eslint)
     - [WebStorm - Prettier](#webstorm---prettier)
-      - [WebStorm Configuration Steps for Prettier:](#webstorm-configuration-steps-for-prettier)
+      - [WebStorm Configuration steps for Prettier](#webstorm-configuration-steps-for-prettier)
   - [Visual Studio Code Extensions](#visual-studio-code-extensions)
     - [Extensions](#extensions)
-  - [Package.json Scripts](#packagejson-scripts)
+  - [GTS `package.json` Scripts](#gts-packagejson-scripts)
   - [Husky - Pre-commit Hook](#husky---pre-commit-hook)
     - [Setup Husky - Automatic configuration](#setup-husky---automatic-configuration)
     - [Configure Husky Pre-Commit](#configure-husky-pre-commit)
@@ -31,7 +31,7 @@ Sample project using the Google TS Linter.
 
 Setup a project to use the [Google TypeScript Linter and Prettier](https://github.com/google/gts)
 
-## Setup ESLint
+## Install ESLint and Prettier
 
 Run the following command from the root directory of the project and follow the prompts.
 
@@ -40,13 +40,15 @@ npx gts init
 # Initialize Google TypeScript Library
 ```
 
+The above command will install the `gts` package and create the necessary files to lint and format the project.
+
 ### GTS Prompts
 
 - Overwrite devDependency for `TypeScript`: **NO**
 - Overwrite devDependency for `@types/node`: **NO**
-- Overwrite package.json already has a script for `lint`: **YES**
+- Overwrite `package.json` already has a script for `lint`: **YES**
 - `./tsconfig.json` already exists, Overwrite: **NO**
-- ./.eslintrc.json already exists, Overwrite: **YES**
+- `./.eslintrc.json` already exists, Overwrite: **YES**
 
 ### Install TypeScript ESLint Package
 
@@ -55,8 +57,6 @@ Install the latest TypeScript ESLint package.
 ```sh
 npm i @typescript-eslint/eslint-plugin@latest -D
 ```
-
-The above command will install the `gts` package and create the necessary files to lint and format the project.
 
 ### Update `tsconfig.json`
 
@@ -91,7 +91,7 @@ For [WebStorm](https://www.jetbrains.com/webstorm/) users some addition configur
 
 Open Preferences from `File > Preferences` and search for "eslint".
 
-#### WebStorm Configuration steps for ESLint
+#### WebStorm - Configuration steps for ESLint
 
 1. Select the "Automatic ESLint configuration" option
 2. _[Optionally]_ Check the "Run eslint --fix" on save.
@@ -104,7 +104,7 @@ Open Preferences from `File > Preferences` and search for "eslint".
 
 Open Preferences from `File > Preferences` and Search for "prettier".
 
-#### WebStorm Configuration Steps for Prettier:
+#### WebStorm Configuration steps for Prettier
 
 1. From the dropdown, select the prettier folder from the `node_modules` folder for the current project.
    1. Leave the **"run for files"** as its default value
@@ -124,7 +124,7 @@ Ensure the below extensions are installed when using [Visual Studio Code](https:
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## Package.json Scripts
+## GTS `package.json` Scripts
 
 ```javascript
 {
@@ -155,7 +155,7 @@ npx husky-init && npm install
 # Install and auto configure Husky
 ```
 
-The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, a `npm` command can be configured to run before code can be committed to git.
+The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, a `npm` command can be configured to run before code can be committed to git. Also see Husky's [generated files](#️-husky---remove-auto-generated-folders) section.
 
 > 📝 Multiple `npm` scripts may be added.
 
