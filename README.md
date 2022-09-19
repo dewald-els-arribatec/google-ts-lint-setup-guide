@@ -52,7 +52,7 @@ The above command will install the `gts` package and create the necessary files 
 
 Add the following line at the start of the `.eslintrc.json` file to your project.
 
-```json
+```javascript
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   ... // Rest of the configuration
@@ -116,7 +116,7 @@ Ensure the below extensions are installed when using [Visual Studio Code](https:
 
 ## Package.json Scripts
 
-```json
+```javascript
 {
   ...
   "scripts": {
