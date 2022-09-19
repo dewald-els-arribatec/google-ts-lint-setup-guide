@@ -26,6 +26,8 @@ Sample project using the Google TS Linter.
     - [Setup Husky - Automatic configuration](#setup-husky---automatic-configuration)
     - [Configure Husky Pre-Commit](#configure-husky-pre-commit)
     - [⛔️ Husky - Remove auto generated folders](#️-husky---remove-auto-generated-folders)
+    - [Additional remarks](#additional-remarks)
+    - [Known Extensions](#known-extensions)
 
 ## Description
 
@@ -39,6 +41,8 @@ Run the following command from the root directory of the project and follow the 
 npx gts init
 # Initialize Google TypeScript Library
 ```
+
+> 📝 If you are prompted to install `create-gts`, enter Yes.
 
 The above command will install the `gts` package and create the necessary files to lint and format the project.
 
@@ -65,6 +69,9 @@ Add the following line at the start of the `.tsconfig.json` file to your project
 ```javascript
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    ...
+  }
   ... // Rest of the configuration
 }
 
@@ -178,3 +185,11 @@ npm run fix
 ### ⛔️ Husky - Remove auto generated folders
 
 Husky will generate a `./src` folder if none is detected in the initialization step. Remove this folder before committing. NextJS Projects are an example of this, since it does not contain a `src` folder.
+
+### Additional remarks
+
+Some VS Code extension cause conflicts with ESLint and must be disabled for the GTS Linter to work effectively.
+
+### Known Extensions
+
+- [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
