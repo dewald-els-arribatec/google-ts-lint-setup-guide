@@ -21,6 +21,7 @@ Sample project using the Google TS Linter.
     - [Extensions](#extensions)
   - [Package.json Scripts](#packagejson-scripts)
   - [Husky [WIP]](#husky-wip)
+    - [Configure Husky Pre-Commit](#configure-husky-pre-commit)
 
 ## Description
 
@@ -118,8 +119,9 @@ Ensure the below extensions are installed when using [Visual Studio Code](https:
   ...
   "scripts": {
     ...
-    "lint": "gts lint",
-    "clean": "gts clean",
+    "fix": "gts fix", # Automatically tries to fix linting and formatting
+    "lint": "gts lint", # Lints and checks the formatting and report via terminal
+    "clean": "gts clean", # Removes output files
   }
 }
 ```
@@ -136,6 +138,18 @@ Run the following command in the root of the project being set up.
 px husky-init && npm install       # npm
 ```
 
-The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, an npm command can be configured to run before code can be committed to git. 
+The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, an npm command can be configured to run before code can be committed to git.
+
+### Configure Husky Pre-Commit
+
+The Husky Pre-commit file will be automatically generated and can be found in the .husky folder. 
 
 
+
+```sh
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Execute gts fix script from package.json.
+npm run fix
+```
