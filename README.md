@@ -10,6 +10,8 @@ Sample project using the Google TS Linter.
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Setup ESLint](#setup-eslint)
+    - [GTS Prompts](#gts-prompts)
+    - [Install TypeScript ESLint Package](#install-typescript-eslint-package)
     - [Update `tsconfig.json`](#update-tsconfigjson)
   - [Important files](#important-files)
   - [WebStorm Configuration](#webstorm-configuration)
@@ -23,7 +25,7 @@ Sample project using the Google TS Linter.
   - [Husky - Pre-commit Hook](#husky---pre-commit-hook)
     - [Setup Husky - Automatic configuration](#setup-husky---automatic-configuration)
     - [Configure Husky Pre-Commit](#configure-husky-pre-commit)
-  - [Possible Issues](#possible-issues)
+    - [⛔️ Husky - Remove auto generated folders](#️-husky---remove-auto-generated-folders)
 
 ## Description
 
@@ -31,26 +33,34 @@ Setup a project to use the [Google TypeScript Linter and Prettier](https://githu
 
 ## Setup ESLint
 
-Please check the [NOTE on tsconfig.json](#note-on-tsconfigjson).
-
-Run the following command from the root of the project directory and follow the prompts.
+Run the following command from the root directory of the project and follow the prompts.
 
 ```shell
 npx gts init
 # Initialize Google TypeScript Library
 ```
 
-The above command will install the `gts` package and create the necessary files to lint and format the project.
+### GTS Prompts
 
-> ### Note on tsconfig.json
->
-> ## ⛔️ NB: **DO NOT** SELECT YES TO OVERWRITE `tsconfig.json`
->
-> &nbsp;
+- Overwrite devDependency for `TypeScript`: **NO**
+- Overwrite devDependency for `@types/node`: **NO**
+- Overwrite package.json already has a script for `lint`: **YES**
+- `./tsconfig.json` already exists, Overwrite: **NO**
+- ./.eslintrc.json already exists, Overwrite: **YES**
+
+### Install TypeScript ESLint Package
+
+Install the latest TypeScript ESLint package.
+
+```sh
+npm i @typescript-eslint/eslint-plugin@latest -D
+```
+
+The above command will install the `gts` package and create the necessary files to lint and format the project.
 
 ### Update `tsconfig.json`
 
-Add the following line at the start of the `.eslintrc.json` file to your project.
+Add the following line at the start of the `.tsconfig.json` file to your project.
 
 ```javascript
 {
@@ -64,7 +74,7 @@ Add the following line at the start of the `.eslintrc.json` file to your project
 
 ## Important files
 
-```
+```text
 .
 ├── .editorconfig           # Configuration for code editor
 ├── .eslintignore           # Folders to ignore for linting
@@ -121,9 +131,9 @@ Ensure the below extensions are installed when using [Visual Studio Code](https:
   ...
   "scripts": {
     ...
-    "fix": "gts fix", # Automatically tries to fix linting and formatting
-    "lint": "gts lint", # Lints and checks the formatting and report via terminal
-    "clean": "gts clean", # Removes output files
+    "fix": "gts fix", // Automatically tries to fix linting and formatting
+    "lint": "gts lint", // Lints and checks the formatting and report via terminal
+    "clean": "gts clean", // Removes output files
   }
 }
 ```
@@ -138,7 +148,7 @@ The above commands are added by the `gts` package.
 
 ### Setup Husky - Automatic configuration
 
-Run the following command in the root of the project being set up.
+Run the following command in the root directory of the project.
 
 ```sh
 npx husky-init && npm install
@@ -165,10 +175,6 @@ npm run fix
 # Add additional scripts you want to run BEFORE commit e.g. npm test
 ```
 
-## Possible Issues
+### ⛔️ Husky - Remove auto generated folders
 
-Some projects might require an additional installation:
-
-```sh
-npm i @typescript-eslint/eslint-plugin@latest -D
-```
+Husky will generate a `./src` folder if none is detected in the initialization step. Remove this folder before committing. NextJS Projects are an example of this, since it does not contain a `src` folder.
