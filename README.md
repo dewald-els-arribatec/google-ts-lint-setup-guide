@@ -20,12 +20,10 @@ Sample project using the Google TS Linter.
   - [Visual Studio Code Extensions](#visual-studio-code-extensions)
     - [Extensions](#extensions)
   - [Package.json Scripts](#packagejson-scripts)
-  - [Husky [WIP]](#husky-wip)
-    - [Setup Husky](#setup-husky)
+  - [Husky - Pre-commit Hook](#husky---pre-commit-hook)
+    - [Setup Husky - Automatic configuration](#setup-husky---automatic-configuration)
     - [Configure Husky Pre-Commit](#configure-husky-pre-commit)
-  - [Debugging](#debugging)
-
-> ⭐️ Just want the commands? Head over to the [TLDR;](#tldr).
+  - [Possible Issues](#possible-issues)
 
 ## Description
 
@@ -132,24 +130,28 @@ Ensure the below extensions are installed when using [Visual Studio Code](https:
 
 The above commands are added by the `gts` package.
 
-## Husky [WIP]
+## Husky - Pre-commit Hook
 
-[Husky](https://typicode.github.io/husky/#/) is used to configure `pre-commit` to lint your code before it is committed to git. This will mean your code can not be committed until the linting issues have been resolved.
+[Husky](https://typicode.github.io/husky/#/?id=automatic-recommended) is used to easily configure a [Git `pre-commit`](https://git-scm.com/docs/githooks#_pre_commit) to lint, format and/or test your code before it is committed to `git`.
 
-### Setup Husky
+> ℹ️ This will mean your code can not be committed until the linting issues have been resolved.
+
+### Setup Husky - Automatic configuration
 
 Run the following command in the root of the project being set up.
 
 ```sh
 npx husky-init && npm install
-# Install and configure Husky
+# Install and auto configure Husky
 ```
 
-The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, an npm command can be configured to run before code can be committed to git.
+The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, a `npm` command can be configured to run before code can be committed to git.
+
+> 📝 Multiple `npm` scripts may be added.
 
 ### Configure Husky Pre-Commit
 
-The Husky Pre-commit file will be automatically generated and can be found in the .husky folder.
+The Husky Pre-commit file will be automatically generated and can be found in the `.husky` folder.
 
 ```sh
 # File: .husky/pre-commit
@@ -159,9 +161,11 @@ The Husky Pre-commit file will be automatically generated and can be found in th
 
 # Execute gts fix script from package.json.
 npm run fix
+
+# Add additional scripts you want to run BEFORE commit e.g. npm test
 ```
 
-## Debugging
+## Possible Issues
 
 Some projects might require an additional installation:
 
