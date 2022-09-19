@@ -21,7 +21,19 @@ Sample project using the Google TS Linter.
     - [Extensions](#extensions)
   - [Package.json Scripts](#packagejson-scripts)
   - [Husky [WIP]](#husky-wip)
+    - [Setup Husky](#setup-husky)
     - [Configure Husky Pre-Commit](#configure-husky-pre-commit)
+  - [Debugging](#debugging)
+  - [TLDR;](#tldr)
+    - [Step 1](#step-1)
+    - [Step 2](#step-2)
+    - [Step 3](#step-3)
+      - [TLDR; Configure Webstorm](#tldr-configure-webstorm)
+      - [TLDR; Configure VSCode](#tldr-configure-vscode)
+    - [Step 4](#step-4)
+    - [Step 5:](#step-5)
+
+> ⭐️ Just want the commands? Head over to the [TLDR;](#tldr).
 
 ## Description
 
@@ -130,21 +142,93 @@ The above commands are added by the `gts` package.
 
 ## Husky [WIP]
 
-[Husky](https://typicode.github.io/husky/#/) is used to configure "pre-commits" to lint your code before it is committed to git.
+[Husky](https://typicode.github.io/husky/#/) is used to configure `pre-commit` to lint your code before it is committed to git. This will mean your code can not be committed until the linting issues have been resolved.
 
-Run the following command in the root of the project being set up. 
+### Setup Husky
 
-```shell 
-px husky-init && npm install       # npm
+Run the following command in the root of the project being set up.
+
+```sh
+npx husky-init && npm install
+# Install and configure Husky
 ```
 
 The above command will create a `.husky` folder and a `pre-commit` file. In the pre-commit file, an npm command can be configured to run before code can be committed to git.
 
 ### Configure Husky Pre-Commit
 
-The Husky Pre-commit file will be automatically generated and can be found in the .husky folder. 
+The Husky Pre-commit file will be automatically generated and can be found in the .husky folder.
 
+```sh
+# File: .husky/pre-commit
 
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Execute gts fix script from package.json.
+npm run fix
+```
+
+## Debugging
+
+Some projects might require an additional installation:
+
+```sh
+npm i @typescript-eslint/eslint-plugin@latest -D
+```
+
+---
+
+## TLDR;
+
+Too lazy to read. Here are the steps.
+
+### Step 1
+
+**⛔️ DO NOT Say YES to overwrite `tsconfig.json`**
+
+```sh
+npx gts init
+```
+
+### Step 2
+
+Add the following line at the start of the `.eslintrc.json` file to your project.
+
+```json
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  ... // Rest of the configuration
+}
+
+```
+
+### Step 3
+
+#### TLDR; Configure Webstorm
+
+- ESLint
+  - Enable Automatic ESLint configuration
+- Prettier:
+  - Select the prettier folder from the `node_modules` folder for the current project.
+  - Check the **"On 'Reformat Code' action"** checkbox
+
+#### TLDR; Configure VSCode
+
+Install ESLint and Prettier [extensions](#extensions)
+
+### Step 4
+
+Run the following command in the root of the project being set up.
+
+```sh
+npx husky-init && npm install
+# Install and configure Husky
+```
+
+Edit the `.husky/pre-commit` file:
+
+File: .husky/pre-commit
 
 ```sh
 #!/usr/bin/env sh
@@ -152,4 +236,15 @@ The Husky Pre-commit file will be automatically generated and can be found in th
 
 # Execute gts fix script from package.json.
 npm run fix
+# Add more scripts that you want to run BEFORE commit.
 ```
+
+### Step 5:
+
+Install the typescript linter
+
+```sh
+npm i @typescript-eslint/eslint-plugin@latest -D
+```
+
+---
