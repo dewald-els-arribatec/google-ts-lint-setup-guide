@@ -2,7 +2,7 @@
 
 # TS Linter and Prettier
 
-Sample project using the Google TS Linter.
+Guide for setting up Google TypeScript Linter in an existing project.
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ Sample project using the Google TS Linter.
     - [Configure Husky Pre-Commit](#configure-husky-pre-commit)
     - [⛔️ Husky - Remove auto generated folders](#️-husky---remove-auto-generated-folders)
     - [Additional remarks](#additional-remarks)
-    - [Known Extensions](#known-extensions)
+      - [Known Extensions](#known-extensions)
 
 ## Description
 
@@ -190,6 +190,6 @@ Husky will generate a `./src` folder if none is detected in the initialization s
 
 Some VS Code extension cause conflicts with ESLint and must be disabled for the GTS Linter to work effectively.
 
-### Known Extensions
+#### Known Extensions
 
 - [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
