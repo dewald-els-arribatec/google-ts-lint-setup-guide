@@ -13,11 +13,14 @@ Guide for setting up Google TypeScript Linter in an existing project.
     - [GTS Prompts](#gts-prompts)
     - [Install TypeScript ESLint Package](#install-typescript-eslint-package)
     - [Update `tsconfig.json`](#update-tsconfigjson)
+    - [TsConfig for Projects **without** React](#tsconfig-for-projects-without-react)
+    - [TsConfig for Projects **with** React](#tsconfig-for-projects-with-react)
   - [Important files](#important-files)
   - [WebStorm Configuration](#webstorm-configuration)
     - [WebStorm - ESLint](#webstorm---eslint)
       - [WebStorm - Configuration steps for ESLint](#webstorm---configuration-steps-for-eslint)
     - [WebStorm - Prettier](#webstorm---prettier)
+    - [Custom Settings for Prettier:](#custom-settings-for-prettier)
       - [WebStorm Configuration steps for Prettier](#webstorm-configuration-steps-for-prettier)
   - [Visual Studio Code Extensions](#visual-studio-code-extensions)
     - [Extensions](#extensions)
@@ -64,17 +67,52 @@ npm i @typescript-eslint/eslint-plugin@latest -D
 
 ### Update `tsconfig.json`
 
-Add the following line at the start of the `.tsconfig.json` file to your project.
+Edit the tsconfig to match the following:
+
+### TsConfig for Projects **without** React
 
 ```javascript
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    ...
-  }
-  ... // Rest of the configuration
+    "rootDir": ".",
+    "outDir": "build",
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "target": "ES2019",
+    "resolveJsonModule": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.html"
+  ]
 }
+```
 
+### TsConfig for Projects **with** React
+
+```javascript
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build",
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "target": "ES2019",
+    "resolveJsonModule": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.html"
+  ]
+}
 ```
 
 > 📝 NOTE: Replace the `extends` property if it already exists.
@@ -96,18 +134,60 @@ For [WebStorm](https://www.jetbrains.com/webstorm/) users some addition configur
 
 ### WebStorm - ESLint
 
+**NB:** Customise files in "overrides" based on project setup.
+
+```json
+{
+  "extends": "./node_modules/gts/",
+  "overrides": [
+    {
+      "files": [
+        "**/*.ts",
+        "**/*.d.ts",
+        "**/*.html"
+      ],
+      "rules": {
+        "semi": "error",
+        "quotes": [
+          "error",
+          "double"
+        ]
+      }
+    }
+  ]
+}
+
+```
+
 Open Preferences from `File > Preferences` and search for "eslint".
 
 #### WebStorm - Configuration steps for ESLint
 
 1. Select the "Automatic ESLint configuration" option
-2. _[Optionally]_ Check the "Run eslint --fix" on save.
+2. Check the "Run eslint --fix" on save.
 
 ![Enable ESlint](./img/webstorm-eslint.png)
 
 > 📖 More information can be found in the [JetBrains Documentation on ESLint for WebStorm](https://www.jetbrains.com/help/webstorm/eslint.html).
 
 ### WebStorm - Prettier
+
+### Custom Settings for Prettier:
+
+```javascript
+module.exports = {
+  ...require("gts/.prettierrc.json"),
+  overrides: [
+    {
+      files: ["**/*.ts", "**/*.d.ts", "**/*.html", "*.js"], // Should be customised based on Project.
+      options: {
+        semi: true,
+        singleQuote: false,
+      },
+    },
+  ],
+};
+```
 
 Open Preferences from `File > Preferences` and Search for "prettier".
 
@@ -116,7 +196,7 @@ Open Preferences from `File > Preferences` and Search for "prettier".
 1. From the dropdown, select the prettier folder from the `node_modules` folder for the current project.
    1. Leave the **"run for files"** as its default value
 2. Check the **"On 'Reformat Code' action"** checkbox
-3. _[Optionally]_ Check the **"On Save"** checkbox
+3. Check the **"On Save"** checkbox
 
 ![Enable Prettier](./img/prettier-settings.png)
 
